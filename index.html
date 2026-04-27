@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Registro Norme — ANDIMEC</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"IBM Plex Sans",sans-serif;background:#0d1117;color:#e6edf3;min-height:100vh;}
+a{color:#3b82f6;}
+@media(max-width:600px){
+  .grid-2{grid-template-columns:1fr!important;}
+  .hbadge{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div style="background:#161b22;border-bottom:1px solid #30363d;padding:0 2rem;position:sticky;top:0;z-index:100;">
+  <div style="max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:1.2rem;height:68px;">
+    <img src="data:image/webp;base64,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" alt="ANDIMEC" style="height:44px;width:auto;background:#fff;padding:4px 8px;border-radius:6px;">
+    <div style="width:1px;height:28px;background:#30363d;"></div>
+    <div style="font-size:.9rem;color:#8b949e;">Registro Norme &amp; Leggi — Officina</div>
+    <div class="hbadge" style="margin-left:auto;background:rgba(232,160,32,.12);border:1px solid rgba(232,160,32,.3);color:#e8a020;font-size:.7rem;font-family:'IBM Plex Mono',monospace;padding:3px 10px;border-radius:20px;">Rev. 2025-04</div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div style="max-width:1400px;margin:2rem auto 0;padding:0 2rem;">
+  <div class="grid-2" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem;">
+    <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:1rem 1.2rem;"><div style="font-size:.7rem;color:#8b949e;text-transform:uppercase;letter-spacing:.08em;font-family:'IBM Plex Mono',monospace;">Norme totali</div><div style="font-size:1.6rem;font-weight:700;font-family:'IBM Plex Mono',monospace;color:#e8a020;">40</div></div>
+    <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:1rem 1.2rem;"><div style="font-size:.7rem;color:#8b949e;text-transform:uppercase;letter-spacing:.08em;font-family:'IBM Plex Mono',monospace;">Cogenti</div><div style="font-size:1.6rem;font-weight:700;font-family:'IBM Plex Mono',monospace;color:#f85149;">19</div></div>
+    <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:1rem 1.2rem;"><div style="font-size:.7rem;color:#8b949e;text-transform:uppercase;letter-spacing:.08em;font-family:'IBM Plex Mono',monospace;">Tecniche</div><div style="font-size:1.6rem;font-weight:700;font-family:'IBM Plex Mono',monospace;color:#3b82f6;">19</div></div>
+    <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:1rem 1.2rem;"><div style="font-size:.7rem;color:#8b949e;text-transform:uppercase;letter-spacing:.08em;font-family:'IBM Plex Mono',monospace;">Volontarie</div><div style="font-size:1.6rem;font-weight:700;font-family:'IBM Plex Mono',monospace;color:#a371f7;">2</div></div>
+  </div>
+
+<div style="margin-bottom:2.5rem;">
+  <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid #30363d;">
+    <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;background:#3fb95020;flex-shrink:0;">♻️</div>
+    <div><div style="font-size:1rem;font-weight:600;">Ambiente &amp; Rifiuti</div><div style="font-size:.78rem;color:#8b949e;margin-top:2px;">Gestione rifiuti speciali, oli esausti, RENTRI</div></div>
+    <div style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:#484f58;">8 norme</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px;">
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #3fb950;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#3fb95022;color:#3fb950;white-space:nowrap;">D.Lgs. 152/2006</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(248,81,73,.15);color:#f85149;border:1px solid rgba(248,81,73,.3);">COGENTE</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Testo Unico Ambientale (TUA)</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Disciplina la gestione dei rifiuti, bonifica siti inquinati, classificazione rifiuti speciali e pericolosi dell&#39;officina (oli, solventi, metalli, filtri).</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2006 · agg. 2025</span>
+    <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2006-04-03;152" onclick="(window.top||window).open('https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2006-04-03;152','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ Normattiva</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #3fb950;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#3fb95022;color:#3fb950;white-space:nowrap;">D.M. 59/2023 + RENTRI</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(248,81,73,.15);color:#f85149;border:1px solid rgba(248,81,73,.3);">COGENTE</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">RENTRI — Registro Elettronico Nazionale Rifiuti</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Nuovi obblighi di tracciabilità digitale dei rifiuti. Nuovi modelli registro carico/scarico e FIR. Scaglionamento iscrizioni 2024–2026.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2023 · operativo 2025</span>
+    <a href="https://rentri.mase.gov.it" onclick="(window.top||window).open('https://rentri.mase.gov.it','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ Portale RENTRI</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #3fb950;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#3fb95022;color:#3fb950;white-space:nowrap;">D.Lgs. 95/1992</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(248,81,73,.15);color:#f85149;border:1px solid rgba(248,81,73,.3);">COGENTE</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Eliminazione degli Oli Usati</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Attuazione direttive CE per oli lubrificanti esausti. Obblighi di raccolta, stoccaggio e smaltimento tramite CONOU per officine meccaniche.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">1992</span>
+    <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:1992-01-27;95" onclick="(window.top||window).open('https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:1992-01-27;95','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ Normattiva</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #3fb950;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#3fb95022;color:#3fb950;white-space:nowrap;">D.M. 148/1998</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(248,81,73,.15);color:#f85149;border:1px solid rgba(248,81,73,.3);">COGENTE</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Registri Carico/Scarico e Formulari FIR</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Disciplina la compilazione dei registri carico/scarico e dei formulari FIR. Parzialmente sostituito dai nuovi modelli RENTRI dal 2025.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">1998</span>
+    <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:ministro.ambiente:decreto:1998-09-01;148" onclick="(window.top||window).open('https://www.normattiva.it/uri-res/N2Ls?urn:nir:ministro.ambiente:decreto:1998-09-01;148','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ Normattiva</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #3fb950;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#3fb95022;color:#3fb950;white-space:nowrap;">D.M. 120/2014</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(248,81,73,.15);color:#f85149;border:1px solid rgba(248,81,73,.3);">COGENTE</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Albo Nazionale Gestori Ambientali</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Iscrizione obbligatoria per trasportatori rifiuti (cat. 4 non pericolosi, cat. 5 pericolosi). Verificare che i propri smaltitori siano regolarmente iscritti.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2014</span>
+    <a href="https://www.albonazionalegestoriambientali.it/Public/Normativa" onclick="(window.top||window).open('https://www.albonazionalegestoriambientali.it/Public/Normativa','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ Albo Gestori</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #3fb950;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#3fb95022;color:#3fb950;white-space:nowrap;">Reg. UE 1357/2014</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(248,81,73,.15);color:#f85149;border:1px solid rgba(248,81,73,.3);">COGENTE</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Classificazione Rifiuti Pericolosi (HP1–HP15)</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Caratteristiche di pericolo HP1–HP15. Integra la Parte IV del TUA per l&#39;attribuzione corretta dei codici CER/EWC ai rifiuti dell&#39;officina.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2014 UE</span>
+    <a href="https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX%3A32014R1357" onclick="(window.top||window).open('https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX%3A32014R1357','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ EUR-Lex</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #3fb950;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#3fb95022;color:#3fb950;white-space:nowrap;">D.M. 05/02/1998</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(248,81,73,.15);color:#f85149;border:1px solid rgba(248,81,73,.3);">COGENTE</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Requisiti Stoccaggio Rifiuti Non Pericolosi</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Criteri per aree di stoccaggio: impermeabilizzazione, copertura, ventilazione, bacini di contenimento. Fondamentale per l&#39;allestimento area rifiuti officina.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">1998</span>
+    <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:ministro.ambiente:decreto:1998-02-05" onclick="(window.top||window).open('https://www.normattiva.it/uri-res/N2Ls?urn:nir:ministro.ambiente:decreto:1998-02-05','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ Gazzetta Ufficiale</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #3fb950;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#3fb95022;color:#3fb950;white-space:nowrap;">D.L. 116/2025</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(248,81,73,.15);color:#f85149;border:1px solid rgba(248,81,73,.3);">COGENTE</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Nuove Sanzioni Rifiuti — Terra dei Fuochi</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Modifica TUA e Codice Penale. Sanzioni più severe per errori su registri carico/scarico e FIR. Sospensione dall&#39;Albo Gestori in caso di violazioni.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2025</span>
+    <a href="https://www.normattiva.it" onclick="(window.top||window).open('https://www.normattiva.it','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ Normattiva</a>
+  </div>
+</div>
+  </div>
+</div><div style="margin-bottom:2.5rem;">
+  <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid #30363d;">
+    <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;background:#f8514920;flex-shrink:0;">🦺</div>
+    <div><div style="font-size:1rem;font-weight:600;">Sicurezza sul Lavoro</div><div style="font-size:.78rem;color:#8b949e;margin-top:2px;">DVR, DPI, formazione, antincendio, macchine</div></div>
+    <div style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:#484f58;">6 norme</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px;">
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #f85149;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#f8514922;color:#f85149;white-space:nowrap;">D.Lgs. 81/2008</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(248,81,73,.15);color:#f85149;border:1px solid rgba(248,81,73,.3);">COGENTE</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Testo Unico Sicurezza sul Lavoro (TUSL)</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Pilastro principale: DVR, RSPP, DPI, formazione lavoratori, sorveglianza sanitaria, gestione emergenze. Aggiornato 2025.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2008 · agg. 2025</span>
+    <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2008-04-09;81!vig=" onclick="(window.top||window).open('https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2008-04-09;81!vig=','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ Normattiva</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #f85149;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#f8514922;color:#f85149;white-space:nowrap;">Dir. 2006/42/CE</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(248,81,73,.15);color:#f85149;border:1px solid rgba(248,81,73,.3);">COGENTE</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Direttiva Macchine — Marcatura CE</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">RES per macchine utensili, presse, torni, centri di lavoro. Obbligo dichiarazione CE di conformità e fascicolo tecnico.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2006 UE</span>
+    <a href="https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32006L0042" onclick="(window.top||window).open('https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32006L0042','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ EUR-Lex</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #f85149;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#f8514922;color:#f85149;white-space:nowrap;">D.P.R. 151/2011</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(248,81,73,.15);color:#f85149;border:1px solid rgba(248,81,73,.3);">COGENTE</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Prevenzione Incendi — Attività Soggette a CPI</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Attività soggette a controllo VVF. Officine con serbatoi carburante, verniciatura o depositi infiammabili rientrano nelle attività soggette a CPI.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2011</span>
+    <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:2011-08-01;151" onclick="(window.top||window).open('https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:2011-08-01;151','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ Normattiva</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #f85149;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#f8514922;color:#f85149;white-space:nowrap;">Reg. UE 1272/2008 (CLP)</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(248,81,73,.15);color:#f85149;border:1px solid rgba(248,81,73,.3);">COGENTE</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">CLP — Classificazione ed Etichettatura Sostanze</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Classificazione e etichettatura di sostanze chimiche pericolose: solventi, lubrificanti, vernicianti. Obbligo schede SDS aggiornate in officina.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2008 UE</span>
+    <a href="https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32008R1272" onclick="(window.top||window).open('https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32008R1272','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ EUR-Lex</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #f85149;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#f8514922;color:#f85149;white-space:nowrap;">UNI EN ISO 13857:2020</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.3);">TECNICA</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Sicurezza Macchine — Distanze di Sicurezza</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Distanze di sicurezza per impedire il raggiungimento delle zone pericolose con gli arti. Per la progettazione e verifica delle protezioni macchine.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2020</span>
+    <a href="https://store.uni.com/uni-en-iso-13857-2020" onclick="(window.top||window).open('https://store.uni.com/uni-en-iso-13857-2020','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ UNI Store</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #f85149;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#f8514922;color:#f85149;white-space:nowrap;">D.Lgs. 213/2025</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(248,81,73,.15);color:#f85149;border:1px solid rgba(248,81,73,.3);">COGENTE</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Protezione Lavoratori — Rischio Amianto</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Aggiorna Capo III Titolo IX del D.Lgs. 81/08. Riduzione del valore limite di esposizione. In vigore dal 24/01/2026.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2025 · vigore 2026</span>
+    <a href="https://www.normattiva.it" onclick="(window.top||window).open('https://www.normattiva.it','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ Normattiva</a>
+  </div>
+</div>
+  </div>
+</div><div style="margin-bottom:2.5rem;">
+  <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid #30363d;">
+    <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;background:#3b82f620;flex-shrink:0;">✅</div>
+    <div><div style="font-size:1rem;font-weight:600;">Qualità &amp; Controllo — AQL</div><div style="font-size:.78rem;color:#8b949e;margin-top:2px;">Sistemi gestione qualità, campionamento AQL, ispezioni</div></div>
+    <div style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:#484f58;">5 norme</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px;">
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #3b82f6;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#3b82f622;color:#3b82f6;white-space:nowrap;">UNI EN ISO 9001:2015</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(163,113,247,.12);color:#a371f7;border:1px solid rgba(163,113,247,.3);">VOLONTARIA</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Sistemi di Gestione per la Qualità (SGQ)</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Standard internazionale per la certificazione del SGQ. Requisiti per processi, gestione del rischio, miglioramento continuo e soddisfazione del cliente.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2015</span>
+    <a href="https://store.uni.com/uni-en-iso-9001-2015" onclick="(window.top||window).open('https://store.uni.com/uni-en-iso-9001-2015','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ UNI Store</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #3b82f6;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#3b82f622;color:#3b82f6;white-space:nowrap;">UNI ISO 2859-1:2007</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.3);">TECNICA</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Campionamento per Accettazione — AQL Attributi</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Sistema di campionamento per ispezione per attributi, indicizzato sull&#39;AQL (Acceptable Quality Limit). Per collaudo in entrata, in lavorazione e finale.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2007</span>
+    <a href="https://store.uni.com/uni-iso-2859-1-2007" onclick="(window.top||window).open('https://store.uni.com/uni-iso-2859-1-2007','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ UNI Store</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #3b82f6;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#3b82f622;color:#3b82f6;white-space:nowrap;">ISO 2859-2:1985</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.3);">TECNICA</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Campionamento per Lotti Isolati o Serie Brevi</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Complemento alla 2859-1 per lotti non in serie continua. Usata quando non vi è storia produttiva consolidata del fornitore.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">1985</span>
+    <a href="https://store.uni.com" onclick="(window.top||window).open('https://store.uni.com','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ UNI Store</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #3b82f6;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#3b82f622;color:#3b82f6;white-space:nowrap;">ISO 2859-3:2005</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.3);">TECNICA</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Campionamento Skip-Lot (Lotti Saltati)</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Riduce la frequenza di ispezione quando il fornitore ha dimostrato affidabilità. Consente di ispezionare solo una parte dei lotti in arrivo.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2005</span>
+    <a href="https://www.iso.org/standard/34261.html" onclick="(window.top||window).open('https://www.iso.org/standard/34261.html','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ ISO.org</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #3b82f6;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#3b82f622;color:#3b82f6;white-space:nowrap;">ISO 3951-1:2022</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.3);">TECNICA</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Campionamento per Ispezione per Variabili</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Piani di campionamento per misure quantitative (dimensionali, pesi). Complementa la ISO 2859 quando si misurano valori numerici.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2022</span>
+    <a href="https://www.iso.org/standard/69006.html" onclick="(window.top||window).open('https://www.iso.org/standard/69006.html','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ ISO.org</a>
+  </div>
+</div>
+  </div>
+</div><div style="margin-bottom:2.5rem;">
+  <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid #30363d;">
+    <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;background:#e8a02020;flex-shrink:0;">⚙️</div>
+    <div><div style="font-size:1rem;font-weight:600;">Meccanica &amp; Tolleranze Dimensionali</div><div style="font-size:.78rem;color:#8b949e;margin-top:2px;">ISO disegno tecnico, tolleranze generali, rugosità</div></div>
+    <div style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:#484f58;">5 norme</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px;">
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #e8a020;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#e8a02022;color:#e8a020;white-space:nowrap;">ISO 2768-1:1989</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.3);">TECNICA</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Tolleranze Generali Lineari e Angolari</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Classi f, m, c, v (fine, media, grezza, molto grezza) per tolleranze dimensionali generali su disegno. Standard di riferimento per le lavorazioni meccaniche.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">1989</span>
+    <a href="https://www.iso.org/standard/7748.html" onclick="(window.top||window).open('https://www.iso.org/standard/7748.html','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ ISO.org</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #e8a020;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#e8a02022;color:#e8a020;white-space:nowrap;">ISO 2768-2 / UNI EN 22768-2</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.3);">TECNICA</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Tolleranze Geometriche Generali (GD&amp;T)</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Classi H, K, L per tolleranze di forma, orientamento, posizione e oscillazione. Integra la ISO 2768-1 per una specificazione completa sul disegno.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">1989</span>
+    <a href="https://store.uni.com/ricerca?text=22768" onclick="(window.top||window).open('https://store.uni.com/ricerca?text=22768','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ UNI Store</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #e8a020;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#e8a02022;color:#e8a020;white-space:nowrap;">ISO 286-1:2010</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.3);">TECNICA</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Sistema ISO Tolleranze per Alberi e Fori</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Fondamenti del sistema ISO di tolleranze e accoppiamenti. Deviazioni fondamentali e gradi di tolleranza (IT) per tutti i campi normalizzati.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2010</span>
+    <a href="https://www.iso.org/standard/54571.html" onclick="(window.top||window).open('https://www.iso.org/standard/54571.html','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ ISO.org</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #e8a020;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#e8a02022;color:#e8a020;white-space:nowrap;">ISO 1302:2002</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.3);">TECNICA</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Indicazione dello Stato delle Superfici (Ra, Rz)</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Metodo per indicare la qualità superficiale (rugosità Ra, Rz) sui disegni tecnici. Essenziale per specifiche tornio, fresatrice, rettificatrice.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2002</span>
+    <a href="https://www.iso.org/standard/31975.html" onclick="(window.top||window).open('https://www.iso.org/standard/31975.html','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ ISO.org</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #e8a020;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#e8a02022;color:#e8a020;white-space:nowrap;">ISO 128 (serie)</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.3);">TECNICA</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Disegno Tecnico — Principi Generali</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Serie di norme sulla rappresentazione tecnica: viste, sezioni, quotatura. Riferimento per la corretta interpretazione dei disegni di officina e commessa.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">Serie ISO</span>
+    <a href="https://www.iso.org/ics/01.100.01/x/" onclick="(window.top||window).open('https://www.iso.org/ics/01.100.01/x/','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ ISO.org</a>
+  </div>
+</div>
+  </div>
+</div><div style="margin-bottom:2.5rem;">
+  <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid #30363d;">
+    <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;background:#a371f720;flex-shrink:0;">🏗️</div>
+    <div><div style="font-size:1rem;font-weight:600;">Macchine &amp; Apparecchi di Sollevamento</div><div style="font-size:.78rem;color:#8b949e;margin-top:2px;">Gru, carroponti, paranchi, carrelli elevatori</div></div>
+    <div style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:#484f58;">3 norme</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px;">
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #a371f7;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#a371f722;color:#a371f7;white-space:nowrap;">UNI EN 13001-2:2021</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.3);">TECNICA</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Sicurezza Gru — Criteri Generali di Progetto</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Progettazione meccanica e verifica teorica delle gru (carroponti, gru a cavalletto). Armonizzata alla Direttiva Macchine 2006/42/CE.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2021</span>
+    <a href="https://store.uni.com/ricerca?text=13001" onclick="(window.top||window).open('https://store.uni.com/ricerca?text=13001','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ UNI Store</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #a371f7;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#a371f722;color:#a371f7;white-space:nowrap;">D.Lgs. 81/08 — All. VII</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(248,81,73,.15);color:#f85149;border:1px solid rgba(248,81,73,.3);">COGENTE</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Verifiche Periodiche Attrezzature di Lavoro</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Scadenze obbligatorie di verifica per sollevamento, compressori, autoclavi. Eseguite da ASL/INAIL o soggetti abilitati. Registro verifiche obbligatorio.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2008 · agg. 2024</span>
+    <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2008-04-09;81!vig=" onclick="(window.top||window).open('https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2008-04-09;81!vig=','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ Normattiva</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #a371f7;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#a371f722;color:#a371f7;white-space:nowrap;">UNI EN 14492-2:2010</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.3);">TECNICA</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Paranchi — Argani e Sistemi Motorizzati</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Requisiti di sicurezza per argani a catena e fune elettrici. Freni, limitatori di carico, protezione dal sovraccarico, marcatura CE.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2010</span>
+    <a href="https://store.uni.com/ricerca?text=14492" onclick="(window.top||window).open('https://store.uni.com/ricerca?text=14492','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ UNI Store</a>
+  </div>
+</div>
+  </div>
+</div><div style="margin-bottom:2.5rem;">
+  <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid #30363d;">
+    <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;background:#f0883e20;flex-shrink:0;">🔥</div>
+    <div><div style="font-size:1rem;font-weight:600;">Saldatura &amp; Costruzioni Metalliche</div><div style="font-size:.78rem;color:#8b949e;margin-top:2px;">Qualifiche saldatori, WPS/WPQR, carpenteria EN 1090</div></div>
+    <div style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:#484f58;">5 norme</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px;">
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #f0883e;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#f0883e22;color:#f0883e;white-space:nowrap;">UNI EN 1090-1/2:2018</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.3);">TECNICA</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Costruzioni Metalliche in Acciaio/Alluminio</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Certificazione obbligatoria per componenti strutturali destinati alle costruzioni. Marcatura CE, FPC (Factory Production Control), Dichiarazione di Prestazione.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2018</span>
+    <a href="https://store.uni.com/ricerca?text=1090" onclick="(window.top||window).open('https://store.uni.com/ricerca?text=1090','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ UNI Store</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #f0883e;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#f0883e22;color:#f0883e;white-space:nowrap;">UNI EN ISO 3834:2021</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.3);">TECNICA</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Requisiti di Qualità per la Saldatura per Fusione</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Livelli: esteso (parte 2), standard (parte 3), elementare (parte 4). Obbligatoria dal D.M. 14/01/2008 per costruzioni metalliche strutturali in Italia.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2021</span>
+    <a href="https://store.uni.com/ricerca?text=iso+3834" onclick="(window.top||window).open('https://store.uni.com/ricerca?text=iso+3834','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ UNI Store</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #f0883e;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#f0883e22;color:#f0883e;white-space:nowrap;">UNI EN ISO 15614-1:2017</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.3);">TECNICA</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Qualifica Procedimento di Saldatura (WPS/WPQR)</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Requisiti per la qualifica del procedimento di saldatura di acciai. Obbligatoria ai sensi EN 1090 e ISO 3834. Produce il WPQR e la WPS approvata.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2017</span>
+    <a href="https://store.uni.com/ricerca?text=15614" onclick="(window.top||window).open('https://store.uni.com/ricerca?text=15614','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ UNI Store</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #f0883e;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#f0883e22;color:#f0883e;white-space:nowrap;">UNI EN ISO 9606-1:2017</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.3);">TECNICA</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Qualifica dei Saldatori — Patentino</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Test e certificazione di qualifica del personale saldatore. Definisce prove pratiche, range di validità e documentazione richiesta.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2017</span>
+    <a href="https://store.uni.com/ricerca?text=9606" onclick="(window.top||window).open('https://store.uni.com/ricerca?text=9606','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ UNI Store</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #f0883e;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#f0883e22;color:#f0883e;white-space:nowrap;">UNI EN ISO 5817:2023</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.3);">TECNICA</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Livelli di Qualità dei Giunti Saldati</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Classifica le imperfezioni ammesse nei giunti saldati in acciaio (livelli B, C, D). Riferimento per il controllo qualità visivo e dimensionale dei cordoni.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2023</span>
+    <a href="https://store.uni.com/ricerca?text=5817" onclick="(window.top||window).open('https://store.uni.com/ricerca?text=5817','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ UNI Store</a>
+  </div>
+</div>
+  </div>
+</div>
+
+
+  <!-- MOCA -->
+  <div style="margin-bottom:2.5rem;">
+    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid #30363d;">
+      <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;background:#06b6d420;flex-shrink:0;">🍽️</div>
+      <div>
+        <div style="font-size:1rem;font-weight:600;">MOCA — Materiali a Contatto con Alimenti</div>
+        <div style="font-size:.78rem;color:#8b949e;margin-top:2px;">Regolamenti UE, GMP, plastiche, hygienic design macchine</div>
+      </div>
+      <div style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:#484f58;">8 norme</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px;">
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #06b6d4;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#06b6d422;color:#06b6d4;white-space:nowrap;">Reg. CE 1935/2004</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(248,81,73,.15);color:#f85149;border:1px solid rgba(248,81,73,.3);">COGENTE</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Quadro Generale Materiali a Contatto con Alimenti (MOCA)</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Regolamento base europeo per tutti i materiali e oggetti destinati al contatto con alimenti. Stabilisce requisiti generali di sicurezza, inertezza e tracciabilità per produttori di componenti meccanici che entrano in contatto con alimenti.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2004 UE</span>
+    <a href="https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32004R1935" onclick="(window.top||window).open('https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32004R1935','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ EUR-Lex</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #06b6d4;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#06b6d422;color:#06b6d4;white-space:nowrap;">Reg. CE 2023/2006 (GMP)</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(248,81,73,.15);color:#f85149;border:1px solid rgba(248,81,73,.3);">COGENTE</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Buone Pratiche di Fabbricazione per MOCA</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Definisce le GMP (Good Manufacturing Practices) per i materiali a contatto con alimenti. Obbliga a sistemi di controllo qualità, documentazione e tracciabilità lungo tutta la filiera produttiva.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2006 UE</span>
+    <a href="https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32023R2006" onclick="(window.top||window).open('https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32023R2006','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ EUR-Lex</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #06b6d4;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#06b6d422;color:#06b6d4;white-space:nowrap;">Reg. UE 10/2011</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(248,81,73,.15);color:#f85149;border:1px solid rgba(248,81,73,.3);">COGENTE</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Materiali Plastici a Contatto con Alimenti</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Norma specifica per materie plastiche. Definisce la lista positiva di sostanze autorizzate, limiti di migrazione globale (OML) e specifica (SML), e requisiti di dichiarazione di conformità.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2011 UE · agg. 2020</span>
+    <a href="https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32011R0010" onclick="(window.top||window).open('https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32011R0010','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ EUR-Lex</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #06b6d4;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#06b6d422;color:#06b6d4;white-space:nowrap;">D.M. 21/03/1973 + agg.</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(248,81,73,.15);color:#f85149;border:1px solid rgba(248,81,73,.3);">COGENTE</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Disciplina Igienica degli Imballaggi Italiani</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Normativa nazionale italiana per materiali a contatto con alimenti (metalli, gomme, carta, vetro). Si applica in assenza di normative europee specifiche per il materiale considerato.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">1973 · agg. 2021</span>
+    <a href="https://www.salute.gov.it/portale/temi/p2_6.jsp?lingua=italiano&id=1643&area=sicurezzaAlimentare&menu=imballaggi" onclick="(window.top||window).open('https://www.salute.gov.it/portale/temi/p2_6.jsp?lingua=italiano&id=1643&area=sicurezzaAlimentare&menu=imballaggi','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ Min. Salute</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #06b6d4;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#06b6d422;color:#06b6d4;white-space:nowrap;">Reg. CE 1895/2005</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(248,81,73,.15);color:#f85149;border:1px solid rgba(248,81,73,.3);">COGENTE</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Restrizione Sostanze Epossidiche nei MOCA</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Limita l'uso di alcuni derivati epossidici (BADGE, BFDGE, NOGE) nei materiali a contatto con alimenti. Rilevante per rivestimenti interni di contenitori e guarnizioni.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2005 UE</span>
+    <a href="https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32005R1895" onclick="(window.top||window).open('https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32005R1895','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ EUR-Lex</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #06b6d4;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#06b6d422;color:#06b6d4;white-space:nowrap;">UNI EN 1672-2:2021</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.3);">TECNICA</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Sicurezza Macchine per Industria Alimentare</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Requisiti di igiene per la progettazione di macchine a contatto con alimenti. Definisce zone di contatto, zone a rischio splash e zone non alimentari con relativi requisiti costruttivi.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2021</span>
+    <a href="https://store.uni.com/ricerca?text=1672-2" onclick="(window.top||window).open('https://store.uni.com/ricerca?text=1672-2','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ UNI Store</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #06b6d4;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#06b6d422;color:#06b6d4;white-space:nowrap;">UNI EN ISO 14159:2008</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.3);">TECNICA</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Igiene nella Progettazione di Macchine</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Requisiti igienici generali per la progettazione di macchine. Integra la Direttiva Macchine 2006/42/CE per applicazioni alimentari, farmaceutiche e cosmetiche.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">2008</span>
+    <a href="https://store.uni.com/ricerca?text=14159" onclick="(window.top||window).open('https://store.uni.com/ricerca?text=14159','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ UNI Store</a>
+  </div>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #06b6d4;border-radius:8px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:#06b6d422;color:#06b6d4;white-space:nowrap;">EHEDG Guidelines</div>
+    <div style="font-size:.65rem;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;background:rgba(163,113,247,.12);color:#a371f7;border:1px solid rgba(163,113,247,.3);">VOLONTARIA</div>
+  </div>
+  <div style="font-size:.85rem;font-weight:600;line-height:1.35;color:#e6edf3;">Linee Guida EHEDG per Hygienic Design</div>
+  <div style="font-size:.78rem;color:#8b949e;line-height:1.45;">Linee guida europee per la progettazione igienica di attrezzature alimentari (European Hygienic Engineering &amp; Design Group). Riferimento tecnico per certificazione hygienic design di componenti meccanici.</div>
+  <div style="display:flex;align-items:center;margin-top:4px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#484f58;">Serie</span>
+    <a href="https://www.ehedg.org/guidelines/" onclick="(window.top||window).open('https://www.ehedg.org/guidelines/','_blank');return false;" style="margin-left:auto;font-size:.75rem;color:#3b82f6;text-decoration:none;padding:3px 10px;border-radius:4px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-family:IBM Plex Mono,monospace;">↗ EHEDG.org</a>
+  </div>
+</div>
+    </div>
+  </div>
+
+  <div style="padding:1.5rem 0;border-top:1px solid #30363d;display:flex;align-items:center;gap:1rem;justify-content:space-between;flex-wrap:wrap;margin-top:1rem;">
+    <p style="font-size:.75rem;color:#484f58;font-family:'IBM Plex Mono',monospace;">ANDIMEC S.r.l. — Documento interno. Aggiornato: Aprile 2025</p>
+    <div style="background:rgba(63,185,80,.1);border:1px solid rgba(63,185,80,.25);color:#3fb950;font-size:.7rem;font-family:'IBM Plex Mono',monospace;padding:3px 10px;border-radius:20px;">● Aggiornato</div>
+    <p style="font-size:.75rem;color:#484f58;font-family:'IBM Plex Mono',monospace;">Fonti: Normattiva · EUR-Lex · UNI Store · ISO.org · MASE.gov.it</p>
+  </div>
+</div>
+
+</body>
+</html>
