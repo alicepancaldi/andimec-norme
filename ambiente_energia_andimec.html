@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ambiente ed Energia — ANDIMEC</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d1117;--surface:#161b22;--surface2:#1c2330;--border:#30363d;--accent:#e8a020;--green:#3fb950;--red:#f85149;--blue:#3b82f6;--teal:#06b6d4;--text:#e6edf3;--muted:#8b949e;--dim:#484f58;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"IBM Plex Sans",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 2rem;position:sticky;top:0;z-index:100;}
+.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1.2rem;height:68px;}
+.logo-img{height:44px;background:#fff;padding:4px 8px;border-radius:6px;}
+.hdiv{width:1px;height:28px;background:var(--border);}
+.htitle{font-size:.9rem;color:var(--muted);}
+.hbadge{margin-left:auto;background:rgba(63,185,80,.12);border:1px solid rgba(63,185,80,.3);color:var(--green);font-size:.7rem;font-family:"IBM Plex Mono",monospace;padding:3px 10px;border-radius:20px;}
+main{max-width:1200px;margin:0 auto;padding:2rem;}
+
+.hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2rem;margin-bottom:2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
+.hero-text h1{font-size:1.6rem;font-weight:700;margin-bottom:.5rem;}
+.hero-text p{font-size:.9rem;color:var(--muted);max-width:520px;line-height:1.6;}
+.hero-badge{text-align:center;flex-shrink:0;}
+.hero-badge .big{font-size:3rem;font-weight:700;font-family:"IBM Plex Mono",monospace;color:var(--green);display:block;}
+.hero-badge .label{font-size:.8rem;color:var(--muted);margin-top:.25rem;}
+
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-bottom:2rem;}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.2rem;position:relative;overflow:hidden;}
+.kpi::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--kpi-color,var(--border));}
+.kpi-label{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-family:"IBM Plex Mono",monospace;margin-bottom:.5rem;}
+.kpi-val{font-size:1.4rem;font-weight:700;font-family:"IBM Plex Mono",monospace;}
+.kpi-unit{font-size:.72rem;color:var(--muted);margin-left:3px;}
+.kpi-delta{margin-top:.5rem;font-size:.8rem;font-family:"IBM Plex Mono",monospace;font-weight:600;}
+.kpi-delta.good{color:var(--green);}
+.kpi-delta.bad{color:var(--red);}
+.kpi-prev{font-size:.7rem;color:var(--dim);margin-top:.2rem;}
+
+.section-title{font-size:1rem;font-weight:600;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.5rem;}
+.section{margin-bottom:2rem;}
+
+.chart-wrap{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.5rem;}
+.chart-title{font-size:.82rem;font-weight:600;color:var(--muted);margin-bottom:1.2rem;font-family:"IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.06em;}
+.legend{display:flex;gap:1.5rem;margin-bottom:1.2rem;}
+.legend-item{display:flex;align-items:center;gap:.4rem;font-size:.75rem;color:var(--muted);}
+.legend-dot{width:10px;height:10px;border-radius:2px;}
+.bar-group{margin-bottom:1.2rem;}
+.bar-label{font-size:.8rem;color:var(--muted);margin-bottom:.35rem;}
+.bar-track{background:var(--surface2);border-radius:4px;height:26px;position:relative;overflow:hidden;margin-bottom:3px;}
+.bar-fill{height:100%;border-radius:4px;display:flex;align-items:center;padding:0 .6rem;font-size:.73rem;font-weight:600;font-family:"IBM Plex Mono",monospace;color:#fff;min-width:40px;}
+.bar-2024{background:rgba(59,130,246,.55);}
+.bar-2025{background:rgba(63,185,80,.65);}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem;}
+
+.data-table{width:100%;border-collapse:collapse;font-size:.82rem;}
+.data-table th{background:var(--surface2);color:var(--muted);font-family:"IBM Plex Mono",monospace;font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;padding:.6rem .8rem;text-align:left;border-bottom:1px solid var(--border);}
+.data-table th.right{text-align:right;}
+.data-table td{padding:.6rem .8rem;border-bottom:1px solid rgba(48,54,61,.5);}
+.data-table td.right{text-align:right;font-family:"IBM Plex Mono",monospace;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:hover td{background:var(--surface2);}
+.data-table tr.total td{font-weight:700;}
+.val-good{color:var(--green);font-weight:600;font-family:"IBM Plex Mono",monospace;}
+.val-bad{color:var(--red);font-weight:600;font-family:"IBM Plex Mono",monospace;}
+
+.note{background:rgba(232,160,32,.06);border:1px solid rgba(232,160,32,.2);border-radius:8px;padding:1rem 1.2rem;font-size:.8rem;color:var(--muted);line-height:1.6;margin-bottom:2rem;}
+.note strong{color:var(--accent);}
+.warn{background:rgba(248,81,73,.06);border:1px solid rgba(248,81,73,.2);border-radius:8px;padding:.8rem 1rem;font-size:.78rem;color:var(--muted);line-height:1.6;margin-top:.8rem;}
+.warn strong{color:var(--red);}
+
+footer{max-width:1200px;margin:2rem auto 0;padding:1.5rem 2rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+footer p{font-size:.75rem;color:var(--dim);font-family:"IBM Plex Mono",monospace;}
+
+@media(max-width:700px){.two-col{grid-template-columns:1fr;}.hero{flex-direction:column;}.kpi-grid{grid-template-columns:1fr 1fr;}header,main{padding-left:1rem;padding-right:1rem;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <img class="logo-img" src="data:image/webp;base64,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" alt="ANDIMEC">
+    <div class="hdiv"></div>
+    <div class="htitle">Ambiente &amp; Energia — Carbon Footprint GHG</div>
+    <div class="hbadge">● Dati 2024–2025</div>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-text">
+      <h1>Carbon Footprint di Organizzazione</h1>
+      <p>Rendicontazione annuale delle emissioni di gas serra (GHG) secondo il protocollo GHG Corporate Standard. Documento predisposto su richiesta di stakeholder esterni. Perimetro: ANDI-MEC S.r.l., sedi di via Rinascita, Ozzano dell'Emilia (BO).</p>
+    </div>
+    <div class="hero-badge">
+      <span class="big">-42%</span>
+      <div class="label">Emissioni Scope 1+2<br>2024 → 2025</div>
+    </div>
+  </div>
+
+  <!-- KPI -->
+  <div class="section">
+    <div class="section-title">📊 Indicatori Chiave 2025 vs 2024</div>
+    <div class="kpi-grid">
+      <div class="kpi" style="--kpi-color:#f85149;">
+        <div class="kpi-label">Scope 1 — Emissioni Dirette</div>
+        <div class="kpi-val">23,31<span class="kpi-unit">tCO₂e</span></div>
+        <div class="kpi-delta good">▼ -67% vs 2024</div>
+        <div class="kpi-prev">2024: 70,56 tCO₂e</div>
+      </div>
+      <div class="kpi" style="--kpi-color:#3b82f6;">
+        <div class="kpi-label">Scope 2 LB — Elettricità</div>
+        <div class="kpi-val">155,58<span class="kpi-unit">tCO₂e</span></div>
+        <div class="kpi-delta good">▼ -35% vs 2024</div>
+        <div class="kpi-prev">2024: 239,76 tCO₂e</div>
+      </div>
+      <div class="kpi" style="--kpi-color:#3fb950;">
+        <div class="kpi-label">Scope 1+2 LB — Totale</div>
+        <div class="kpi-val">178,89<span class="kpi-unit">tCO₂e</span></div>
+        <div class="kpi-delta good">▼ -42% vs 2024</div>
+        <div class="kpi-prev">2024: 310,32 tCO₂e</div>
+      </div>
+      <div class="kpi" style="--kpi-color:#06b6d4;">
+        <div class="kpi-label">Gas Naturale</div>
+        <div class="kpi-val">6.103<span class="kpi-unit">Smc</span></div>
+        <div class="kpi-delta good">▼ -13% vs 2024</div>
+        <div class="kpi-prev">2024: 7.037 Smc</div>
+      </div>
+      <div class="kpi" style="--kpi-color:#e8a020;">
+        <div class="kpi-label">Energia Elettrica</div>
+        <div class="kpi-val">904.517<span class="kpi-unit">kWhe</span></div>
+        <div class="kpi-delta good">▼ -5% vs 2024</div>
+        <div class="kpi-prev">2024: 951.443 kWhe</div>
+      </div>
+      <div class="kpi" style="--kpi-color:#a371f7;">
+        <div class="kpi-label">Consumo Acqua</div>
+        <div class="kpi-val">1.731<span class="kpi-unit">mc</span></div>
+        <div class="kpi-delta good">▼ -28% vs 2024</div>
+        <div class="kpi-prev">2024: 2.410 mc</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRAFICI -->
+  <div class="two-col">
+    <div class="chart-wrap">
+      <div class="chart-title">Emissioni GHG per Scope (tCO₂e)</div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(59,130,246,.55);"></div>2024</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(63,185,80,.65);"></div>2025</div>
+      </div>
+      <div class="bar-group">
+        <div class="bar-label">Scope 1 — Emissioni Dirette</div>
+        <div class="bar-track"><div class="bar-fill bar-2024" style="width:100%;">70,56</div></div>
+        <div class="bar-track"><div class="bar-fill bar-2025" style="width:33%;">23,31</div></div>
+      </div>
+      <div class="bar-group">
+        <div class="bar-label">Scope 2 LB — Energia Elettrica</div>
+        <div class="bar-track"><div class="bar-fill bar-2024" style="width:100%;">239,76</div></div>
+        <div class="bar-track"><div class="bar-fill bar-2025" style="width:65%;">155,58</div></div>
+      </div>
+      <div class="bar-group">
+        <div class="bar-label">Scope 3 Cat.3 — A monte combustibili</div>
+        <div class="bar-track"><div class="bar-fill bar-2024" style="width:100%;">63,47</div></div>
+        <div class="bar-track"><div class="bar-fill bar-2025" style="width:78%;">49,62</div></div>
+      </div>
+      <div class="bar-group">
+        <div class="bar-label">Scope 3 Cat.5 — Rifiuti</div>
+        <div class="bar-track"><div class="bar-fill bar-2024" style="width:79%;">1,82</div></div>
+        <div class="bar-track"><div class="bar-fill bar-2025" style="width:100%;">2,29</div></div>
+      </div>
+    </div>
+
+    <div class="chart-wrap">
+      <div class="chart-title">Consumi Energetici e Risorse</div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(59,130,246,.55);"></div>2024</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(63,185,80,.65);"></div>2025</div>
+      </div>
+      <div class="bar-group">
+        <div class="bar-label">Gas Naturale (Smc)</div>
+        <div class="bar-track"><div class="bar-fill bar-2024" style="width:100%;">7.037</div></div>
+        <div class="bar-track"><div class="bar-fill bar-2025" style="width:87%;">6.103</div></div>
+      </div>
+      <div class="bar-group">
+        <div class="bar-label">Energia Elettrica (kWhe)</div>
+        <div class="bar-track"><div class="bar-fill bar-2024" style="width:100%;">951.443</div></div>
+        <div class="bar-track"><div class="bar-fill bar-2025" style="width:95%;">904.517</div></div>
+      </div>
+      <div class="bar-group">
+        <div class="bar-label">Acqua prelevata (mc)</div>
+        <div class="bar-track"><div class="bar-fill bar-2024" style="width:100%;">2.410</div></div>
+        <div class="bar-track"><div class="bar-fill bar-2025" style="width:72%;">1.731</div></div>
+      </div>
+      <div class="bar-group">
+        <div class="bar-label">Gas Naturale — emissioni (tCO₂e)</div>
+        <div class="bar-track"><div class="bar-fill bar-2024" style="width:100%;">14,39</div></div>
+        <div class="bar-track"><div class="bar-fill bar-2025" style="width:88%;">12,61</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABELLA DETTAGLIO -->
+  <div class="section">
+    <div class="section-title">📋 Inventario Emissioni GHG — Dettaglio</div>
+    <div class="chart-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Fonte / Scope</th>
+            <th class="right">2024 (tCO₂e)</th>
+            <th class="right">2025 (tCO₂e)</th>
+            <th class="right">Δ %</th>
+            <th class="right">2024 (GJ)</th>
+            <th class="right">2025 (GJ)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Gas Naturale — Scope 1</td>
+            <td class="right">14,39</td>
+            <td class="right">12,61</td>
+            <td class="right"><span class="val-good">▼ 12%</span></td>
+            <td class="right">296,8 *</td>
+            <td class="right">223,9 *</td>
+          </tr>
+          <tr>
+            <td>Automezzi aziendali — Scope 1</td>
+            <td class="right">56,17</td>
+            <td class="right">10,70</td>
+            <td class="right"><span class="val-good">▼ 81%</span></td>
+            <td class="right">13,66</td>
+            <td class="right">2,46</td>
+          </tr>
+          <tr>
+            <td>Gas Refrigeranti — Scope 1</td>
+            <td class="right">0,00</td>
+            <td class="right">0,00</td>
+            <td class="right" style="color:var(--dim);">—</td>
+            <td class="right">—</td>
+            <td class="right">—</td>
+          </tr>
+          <tr class="total" style="background:rgba(248,81,73,.05);">
+            <td><strong>TOTALE SCOPE 1</strong></td>
+            <td class="right"><strong>70,56</strong></td>
+            <td class="right"><strong>23,31</strong></td>
+            <td class="right"><span class="val-good">▼ 67%</span></td>
+            <td class="right"><strong>296,8</strong></td>
+            <td class="right"><strong>226,4</strong></td>
+          </tr>
+          <tr>
+            <td>Energia Elettrica rete — Scope 2 LB</td>
+            <td class="right">239,76</td>
+            <td class="right">155,58</td>
+            <td class="right"><span class="val-good">▼ 35%</span></td>
+            <td class="right">3.425,2</td>
+            <td class="right">3.256,3</td>
+          </tr>
+          <tr class="total" style="background:rgba(59,130,246,.05);">
+            <td><strong>TOTALE SCOPE 2 LB</strong></td>
+            <td class="right"><strong>239,76</strong></td>
+            <td class="right"><strong>155,58</strong></td>
+            <td class="right"><span class="val-good">▼ 35%</span></td>
+            <td class="right">—</td>
+            <td class="right">—</td>
+          </tr>
+          <tr>
+            <td>A monte combustibili — Scope 3 Cat.3</td>
+            <td class="right">63,47</td>
+            <td class="right">49,62</td>
+            <td class="right"><span class="val-good">▼ 22%</span></td>
+            <td class="right">—</td>
+            <td class="right">—</td>
+          </tr>
+          <tr>
+            <td>Rifiuti — Scope 3 Cat.5</td>
+            <td class="right">1,82</td>
+            <td class="right">2,29</td>
+            <td class="right"><span class="val-bad">▲ 26%</span></td>
+            <td class="right">—</td>
+            <td class="right">—</td>
+          </tr>
+          <tr>
+            <td>Scope 3 Cat.1 ⚠️</td>
+            <td class="right">0,37 <span style="font-size:.7rem;color:var(--dim);">(solo acqua)</span></td>
+            <td class="right">0,33 <span style="font-size:.7rem;color:var(--dim);">(beni+servizi)</span></td>
+            <td class="right" style="color:var(--dim);">n.c.</td>
+            <td class="right">—</td>
+            <td class="right">—</td>
+          </tr>
+          <tr class="total" style="background:rgba(63,185,80,.07);border-top:2px solid #3fb950;">
+            <td><strong>TOTALE SCOPE 1+2 LB</strong></td>
+            <td class="right"><strong>310,32</strong></td>
+            <td class="right"><strong>178,89</strong></td>
+            <td class="right"><span class="val-good">▼ 42%</span></td>
+            <td class="right">—</td>
+            <td class="right">—</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="font-size:.72rem;color:var(--dim);margin-top:.8rem;font-family:'IBM Plex Mono',monospace;">* GJ Scope 1 include gas naturale + automezzi</div>
+    </div>
+  </div>
+
+  <!-- NOTE -->
+  <div class="note">
+    <strong>Metodologia:</strong> Calcolo eseguito con lo Strumento di Calcolo Corporate Carbon Footprint GHG — versione 1.1 (anno 2024) e versione 2.0 (anno 2025), sviluppato da DICO GROUP. Scope 2 calcolato con metodo Location-Based (LB). La significativa riduzione dello Scope 1 nel 2025 è principalmente attribuibile alla riduzione dei km percorsi dagli automezzi aziendali (da 38.000 a 48.923 km totali, ma con litri effettivi molto inferiori: da 22.352 a 4.020 litri di diesel).
+    <div class="warn">
+      <strong>⚠️ Nota comparabilità Scope 3 Cat.1:</strong> Il perimetro del calcolo è cambiato tra le due versioni dello strumento. Nel 2024 la Cat.1 includeva solo l'approvvigionamento idrico; nel 2025 include anche beni e servizi acquistati. I due valori non sono direttamente comparabili. L'aumento dei rifiuti (Scope 3 Cat.5: +26%) è da monitorare nel prossimo periodo.
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>ANDIMEC S.r.l. — Documento interno. Rendicontazione GHG su richiesta stakeholder esterni.</p>
+  <p>Fonte: Strumento GHG Corporate Carbon Footprint v1.1/v2.0 — DICO GROUP</p>
+</footer>
+
+</body>
+</html>
